@@ -1,0 +1,30 @@
+﻿@model MVC_PictureGallery_Lab.Models.PictureViewModel
+
+@using (Html.BeginForm("Create", "Picture", FormMethod.Post, new { id = "PictureForm", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>PictureViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+
+        <div class="col-md-10">
+            <input type="file" name="file" id="file" />
+            @Html.ValidationMessage("error")
+        </div>
+
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/JavaScripts/Growl/jquery.growl.js"></script>
+<link href="~/JavaScripts/Growl/jquery.growl.css" rel="stylesheet" />
+<script src="~/JavaScripts/JavaScript_CreatePicture.js"></script>

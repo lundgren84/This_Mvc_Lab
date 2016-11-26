@@ -1,0 +1,28 @@
+﻿.gallery_container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  max-width: 99%;
+  margin: 1em auto;
+}
+
+.gallery_item {
+  flex: 0 1 auto;
+  text-align: center;
+  padding: .5em;
+  margin: .5em .5em 1em;
+  background: #009688;
+  color: #fff;
+  box-shadow: 0 0px 8px #ccc;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 2px solid #fff;
+}
+.gallery_item img {
+  max-width: 100%;
+  height: auto !important;
+  margin-bottom: 0em;
+}

@@ -1,0 +1,19 @@
+﻿<link href="~/Style/FlexPictures.css" rel="stylesheet" />
+<h2>Gallery</h2>
+
+@Html.ActionLink("Uppload new picture", "Create", "Picture")
+
+<div class="gallery_container">
+    @for (var x = 0; x < Model.Count; x++)
+    {
+        if (Model[x].AlbumRefID == new Guid())
+        {
+            <span class="gallery_item">
+                <a href="@Url.Action("Details","Picture",new { Id = Model[x].Id }, null)">
+                    <img src="@Url.Content($"{Model[x].Url}")" alt=". . .ALT. . .">
+                </a>
+            </span>
+        }
+
+    }
+</div>

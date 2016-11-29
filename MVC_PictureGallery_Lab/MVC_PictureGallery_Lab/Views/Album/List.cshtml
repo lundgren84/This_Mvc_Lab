@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MVC_PictureGallery_Lab.Models.AlbumViewModel>
+
+
+@foreach (var item in Model)
+{   
+    <div class="row">
+        <div class="col-xs-3">@Html.DisplayFor(modelItem => item.Name)</div>
+        <div class="col-xs-2">@Html.DisplayFor(modelItem => item.Topic)</div>
+        <div class="col-xs-2">32</div>
+        <div class="col-xs-3">
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </div>
+    </div>
+}
+

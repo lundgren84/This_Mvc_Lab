@@ -15,10 +15,14 @@ namespace MVC_PictureGallery_Lab.Controllers
     {
         // GET: Album
         public ActionResult Index()
+        {       
+            return View();
+        }
+        public ActionResult List()
         {
             List<AlbumViewModel> Albums = Crud.GetAlbums().ToModelList();
             Albums.GetPictures();
-            return View(Albums);
+            return PartialView("List", Albums);
         }
         public ActionResult Create()
         {

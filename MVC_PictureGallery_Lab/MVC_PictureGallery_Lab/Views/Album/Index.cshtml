@@ -1,0 +1,18 @@
+﻿@model MVC_PictureGallery_Lab.Models.AlbumViewModel
+Button
+<div class="container">
+    @* Button Add new Album *@
+    @* Albumform *@
+    <div class="row">
+        <div class="col-xs-3">@Html.DisplayNameFor(model => model.Name)</div>
+        <div class="col-xs-2">@Html.DisplayNameFor(model => model.Topic)<</div>
+        <div class="col-xs-2">Images</div>
+        <div class="col-xs-3">
+
+        </div>
+    </div>
+    @{
+        Html.RenderAction("List");
+    }
+
+</div>

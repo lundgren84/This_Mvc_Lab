@@ -23,26 +23,28 @@ namespace MVC_PictureGallery_Lab.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PictureViewModel Model, HttpPostedFileBase file)
-        {
-            if(file == null ||file.ContentLength == 0)
+        public ActionResult Create(PictureViewModel Model, HttpPostedFileBase[] file)
+        {  
+            foreach (var f in file)
             {
-                ModelState.AddModelError("error", "En fil vill jag gärna att du laddar upp!");
-                return PartialView("Error", file);
+                if (f == null || f.ContentLength == 0)
+                {
+                    ModelState.AddModelError("error", "En fil vill jag gärna att du laddar upp!");
+                    return PartialView("Error", Model);
+                }
+                else
+                {
+                    //Save file in Project
+                    f.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), f.FileName));
+                    //Fill Picture Model
+                    Model.Name = f.FileName;
+                    Model.Url = $@"/Pictures/" + f.FileName;
+                    Model.Size = f.ContentLength;
+                    Model.Id = Guid.NewGuid();
+                    Crud.CreatePicture(Model.ToEntity());              
+                }
             }
-            if (file != null)
-            {
-                //Save file in Project
-                file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
-                //Fill Picture Model
-                Model.Name = file.FileName;
-                Model.Url = $@"/Pictures/" + file.FileName;
-                Model.Size = file.ContentLength;
-                Model.Id = Guid.NewGuid();
-                Crud.CreatePicture(Model.ToEntity());
-                return RedirectToAction("Index", "Gallery");
-            }
-            return View(Model);
+            return View();  
         }
 
         public ActionResult Details(Guid Id)
@@ -77,7 +79,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             else
             {
                 return RedirectToAction("Details", "Album", new { id = Model.AlbumRefID });
-            }    
+            }
         }
         //[HttpPost]
         //public ActionResult Delete(PictureViewModel Model)

@@ -102,17 +102,26 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="JavaScripts\CreateAlbum.js" />
+    <Content Include="JavaScripts\CreateComment.js" />
+    <Content Include="JavaScripts\CreatePicture.js" />
+    <Content Include="JavaScripts\Examples\main.js" />
     <Content Include="JavaScripts\Growl\jquery.growl.css" />
     <Content Include="JavaScripts\Growl\jquery.growl.js" />
     <Content Include="JavaScripts\Main.js" />
+    <Content Include="JavaScripts\PictureUpload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Style\FlexPictures.css" />
     <Content Include="Style\jquery.growl.css" />
+    <Content Include="Style\Main.css" />
+    <Content Include="Style\PictureUpload.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +167,10 @@
     <Content Include="Views\Album\AddPictures.cshtml" />
     <Content Include="Views\Album\Delete.cshtml" />
     <Content Include="Views\Picture\Error.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Shared\_PartialLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -167,9 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="JavaScripts\Examples\" />
     <Folder Include="Pictures\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConnectLayer\ConnectLayer.csproj">

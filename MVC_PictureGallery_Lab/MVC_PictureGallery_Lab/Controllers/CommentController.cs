@@ -17,7 +17,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View();
         }
         public ActionResult Create(Guid Id)
-        {       
+        {
                 var model = new CommentViewModel()
                 {
                     Picture = Crud.GetPicture(Id).ToModel()
@@ -29,7 +29,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         {
             if (ModelState.IsValid)
             {
-                Model.Id = Guid.NewGuid();
+                Model.Id = Guid.NewGuid();             
                 Crud.CreateComment(Model.ToEntity());
                 return RedirectToAction("Details","Picture", new { id = Model.Picture.Id });
             }

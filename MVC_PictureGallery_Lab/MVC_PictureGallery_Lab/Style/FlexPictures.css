@@ -14,12 +14,7 @@
   text-align: center;
   padding: .5em;
   margin: .5em .5em 1em;
-  background: #009688;
   color: #fff;
-  box-shadow: 0 0px 8px #ccc;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border: 2px solid #fff;
 }
 .gallery_item img {
   max-width: 100%;

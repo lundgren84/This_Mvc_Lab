@@ -24,13 +24,15 @@ namespace MVC_PictureGallery_Lab.Controllers
         [HttpPost]
         public ActionResult Create(AlbumViewModel Model)
         {
-            
-            if (Model.Name.Length > 0)
+
+        
+            if (ModelState.IsValid)
             {
                 Model.Id = Guid.NewGuid();   
                 Crud.CreateAlbum(Model.ToEntity());
+                return Redirect("~/Home/Index");
             }
-            return Redirect("~/Home/Index");
+            return View(Model);
         }
         public ActionResult Details(Guid Id)
         {

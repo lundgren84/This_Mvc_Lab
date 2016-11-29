@@ -8,10 +8,18 @@
         <h4>AlbumViewModel</h4>
         <hr />
     
-        @Html.HiddenFor(model => model.Id);
+        @Html.HiddenFor(model => model.Id)
 
-        <div class="col-md-10">
-            <input type="file" name="file" id="file" />
+        @*<div class="col-md-10">
+            <input type="file" name="file" id="file" onchange="validatePhoto()" />
+            @Html.ValidationMessage("error")
+            <div id="errorDiv"></div>
+        </div>*@
+
+        <div class="preview img-wrapper"></div>
+        <div class="file-upload-wrapper">
+            <input type="file" name="file" class="file-upload-native" accept="image/*" />
+            <input type="text" disabled placeholder="upload image" class="file-upload-text" />
             @Html.ValidationMessage("error")
         </div>
 
@@ -22,3 +30,5 @@
         </div>
     </div>
 }
+<script src="~/JavaScripts/CreatePicture.js"></script>
+

@@ -14,7 +14,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         // GET: Gallery
         public ActionResult Index()
         {
-            List<PictureViewModel> Pictures = Crud.GetPictures().ToModelList();
+            IEnumerable<PictureViewModel> Pictures = Crud.GetPictures().ToModelList();
             return View(Pictures);
         }
     }

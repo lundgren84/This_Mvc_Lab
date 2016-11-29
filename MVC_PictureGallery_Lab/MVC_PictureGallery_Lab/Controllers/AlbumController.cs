@@ -1,4 +1,5 @@
 ﻿using ConnectLayer;
+using MVC_PictureGallery_Lab.ExtraClasses;
 using MVC_PictureGallery_Lab.Mapping;
 using MVC_PictureGallery_Lab.Models;
 using System;
@@ -15,7 +16,9 @@ namespace MVC_PictureGallery_Lab.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            return View();
+            List<AlbumViewModel> Albums = Crud.GetAlbums().ToModelList();
+            Albums.GetPictures();
+            return View(Albums);
         }
         public ActionResult Create()
         {

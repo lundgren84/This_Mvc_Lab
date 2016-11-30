@@ -10,11 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Hash" Type="nvarchar" MaxLength="100" />
-          <Property Name="Salt" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -135,13 +131,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Hash" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Albums" Relationship="Self.FK_Album_Account" FromRole="Account" ToRole="Album" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Account" FromRole="Account" ToRole="Comment" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -269,13 +261,9 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Hash" ColumnName="Hash" />
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Albums">

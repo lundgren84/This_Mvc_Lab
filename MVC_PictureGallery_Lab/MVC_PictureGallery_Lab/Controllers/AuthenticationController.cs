@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ConnectLayer;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MVC_PictureGallery_Lab.Mapping;
+using MVC_PictureGallery_Lab.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,12 +51,18 @@ namespace MVC_PictureGallery_Lab.Controllers
                 var identity = await userManager.CreateIdentityAsync(user, 
                     DefaultAuthenticationTypes.ApplicationCookie);
                 //Create new claim
-                //identity.AddClaim(new Claim("Genre", "Male"));
+                identity.AddClaim(new Claim("AccUserName", username));
 
                 var authorisationManager = 
                     HttpContext.GetOwinContext().Authentication;
                 //Sign in
                 authorisationManager.SignIn(identity);
+                var Acc = new AccountViewModel()
+                {
+                    UserName = user.UserName,
+                    Email = user.Email
+                };
+                Crud.CreateAccount(Acc.ToEntity());
             }
             return RedirectToAction("Index", "Album");
         }

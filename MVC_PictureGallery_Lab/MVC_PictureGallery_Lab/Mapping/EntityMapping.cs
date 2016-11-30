@@ -1,4 +1,5 @@
 ﻿using ConnectLayer;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MVC_PictureGallery_Lab.Mapping;
 using MVC_PictureGallery_Lab.Models;
 using System;
@@ -11,30 +12,23 @@ namespace MVC_PictureGallery_Lab.Mapping
     public static class EntityMapping
     {
         //Account
-        public static Account ModelToEntity(AccountViewModel model)
-        {
-            var Entity = new Account()
-            {
-                Id = model.Id,
-                FirstName = model.Fistname,
-                LastName = model.Lastname,
-                Email = model.Email,
-                Hash = model.Hash,
-          
-            };
-            return Entity;
-        }
-        public static AccountViewModel EntityToModel(Account Entity)
+        public static AccountViewModel ToModel(this Account Entity)
         {
             var Model = new AccountViewModel()
             {
                 Id = Entity.Id,
-                Fistname = Entity.FirstName,
-                Lastname = Entity.LastName,
-                Email = Entity.Email,
-                Hash = Entity.Hash,           
+                UserName = Entity.UserName,
             };
             return Model;
+        }
+        public static Account ToEntity(this AccountViewModel user)
+        {
+            return new Account()
+            {
+
+                UserName = user.UserName,
+                Id = user.Id
+            };
         }
         //Album
         public static Album ToEntity(this AlbumViewModel model)
@@ -43,7 +37,8 @@ namespace MVC_PictureGallery_Lab.Mapping
             {
                 Id = model.Id,
                 Name = model.Name,
-                Topic = model.Topic,          
+                Topic = model.Topic,
+                AccountRefID = model.Account.Id
             };
             return Entity;
         }
@@ -68,7 +63,7 @@ namespace MVC_PictureGallery_Lab.Mapping
         //Comment
         public static Comment ToEntity(this CommentViewModel model)
         {
-            if(model.Picture == null)
+            if (model.Picture == null)
             {
                 model.Picture = new PictureViewModel();
             }
@@ -76,7 +71,7 @@ namespace MVC_PictureGallery_Lab.Mapping
             {
                 Id = model.Id,
                 Text = model.Text,
-                PictureRefID = model.Picture.Id        
+                PictureRefID = model.Picture.Id
             };
             return Entity;
         }
@@ -104,7 +99,8 @@ namespace MVC_PictureGallery_Lab.Mapping
                 Name = model.Name,
                 Url = model.Url,
                 Size = model.Size,
-                
+                Public = model.Public
+
             };
             if (model.AlbumRefID != new Guid())
             {
@@ -120,9 +116,11 @@ namespace MVC_PictureGallery_Lab.Mapping
                 Name = Entity.Name,
                 Url = Entity.Url,
                 Size = (int)Entity.Size,
-                Comments = (Crud.GetCommentsFromPicture(Entity.Id)).ToModelList(),                      
+                Public = (bool)Entity.Public,
+                Comments = (Crud.GetCommentsFromPicture(Entity.Id)).ToModelList(),
             };
-            if(Entity.AlbumRefID != null)
+            
+            if (Entity.AlbumRefID != null)
             {
                 Model.AlbumRefID = (Guid)Entity.AlbumRefID;
             };
@@ -132,9 +130,10 @@ namespace MVC_PictureGallery_Lab.Mapping
         public static List<PictureViewModel> ToModelList(this List<Picture> Pictures)
         {
             var ModelPictures = new List<PictureViewModel>();
-            Pictures.ForEach(x=> ModelPictures.Add(x.ToModel()));
+            Pictures.ForEach(x => ModelPictures.Add(x.ToModel()));
             return ModelPictures;
         }
+   
     }
 }
 

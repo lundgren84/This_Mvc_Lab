@@ -6,7 +6,7 @@
 <div class="gallery_container">
     @for (var x = 0; x < Model.Count; x++)
     {
-        if (Model[x].AlbumRefID == new Guid())
+        if (Model[x].Public == true)
         {
             <span class="gallery_item">
                 <a href="@Url.Action("Details","Picture",new { Id = Model[x].Id }, null)">

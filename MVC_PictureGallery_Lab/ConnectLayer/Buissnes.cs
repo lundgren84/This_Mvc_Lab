@@ -30,6 +30,14 @@ namespace ConnectLayer
             }
         }
 
+        public static List<Album> AccGetAlbums(Guid id)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                return ctx.Albums.Where(x => x.AccountRefID == id).ToList();
+            }
+        }
+
         public static List<Picture> GetPictureToAlbum(Guid Album_id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
@@ -46,11 +54,21 @@ namespace ConnectLayer
             }
         }
 
+       
+
         public static List<Picture> GetAlbumPictures(Guid id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
                 return ctx.Pictures.Where(x => x.AlbumRefID == id).ToList();
+            }
+        }
+
+        public static Account GetAccount(string accUserName)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                return ctx.Accounts.Single(x=>x.UserName == accUserName);
             }
         }
 
@@ -85,6 +103,16 @@ namespace ConnectLayer
             {
                 var Entity = ctx.Comments.Find(comment.Id);
                 ctx.Comments.Remove(Entity);
+                ctx.SaveChanges();
+            }
+        }
+
+        public static void CreateAccount(Account account)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                account.Id = Guid.NewGuid();
+                ctx.Accounts.Add(account);
                 ctx.SaveChanges();
             }
         }

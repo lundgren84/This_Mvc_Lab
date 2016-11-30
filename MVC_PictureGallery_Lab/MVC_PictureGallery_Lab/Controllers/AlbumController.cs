@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MVC_PictureGallery_Lab.Controllers
 {
@@ -25,7 +26,11 @@ namespace MVC_PictureGallery_Lab.Controllers
         }
         public ActionResult List()
         {
-            List<AlbumViewModel> Albums = Crud.GetAlbums().ToModelList();
+            //Get Account
+            var AccUserName = User.Identity.Name;
+            AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
+            //Get Accounts Album
+            List<AlbumViewModel> Albums = Crud.AccGetAlbums(acc.Id).ToModelList();
             Albums.GetPictures();
             return PartialView("List", Albums);
         }
@@ -38,6 +43,9 @@ namespace MVC_PictureGallery_Lab.Controllers
         { 
             if (ModelState.IsValid)
             {
+                var AccUserName = User.Identity.Name;
+                AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
+                Model.Account = acc;
                 Crud.CreateAlbum(Model.ToEntity());            
             }
             //return PartialView("_Empty");
@@ -55,12 +63,13 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult AddPictures(AlbumViewModel Model, HttpPostedFileBase file)
+        public ActionResult AddPictures(bool Public,AlbumViewModel Model, HttpPostedFileBase file)
         {
             PictureViewModel PictureModel = new PictureViewModel();
             //Save file in Project
             file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
             //Fill Picture Model
+            PictureModel.Public = Public;
             PictureModel.Name = file.FileName;
             PictureModel.Url = $@"/Pictures/" + file.FileName;
             PictureModel.Size = file.ContentLength;

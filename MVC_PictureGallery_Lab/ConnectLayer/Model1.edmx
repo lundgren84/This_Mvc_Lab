@@ -43,6 +43,7 @@
           <Property Name="Url" Type="nvarchar" MaxLength="100" />
           <Property Name="Size" Type="int" />
           <Property Name="AlbumRefID" Type="uniqueidentifier" />
+          <Property Name="Public" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -175,6 +176,7 @@
           <Property Name="AlbumRefID" Type="Guid" />
           <NavigationProperty Name="Album" Relationship="Self.FK_Picture_Album" FromRole="Picture" ToRole="Album" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Picture" FromRole="Picture" ToRole="Comment" />
+          <Property Name="Public" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -299,6 +301,7 @@
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="Public" ColumnName="Public" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Url" ColumnName="Url" />

@@ -11,6 +11,7 @@ namespace MVC_PictureGallery_Lab.Models
         public string Name { get; set; }
         public string Url { get; set; }
         public int Size { get; set; }
+        public bool Public { get; set; }
         public List<CommentViewModel> Comments { get; set; }
         public Guid AlbumRefID { get; set; }
     }

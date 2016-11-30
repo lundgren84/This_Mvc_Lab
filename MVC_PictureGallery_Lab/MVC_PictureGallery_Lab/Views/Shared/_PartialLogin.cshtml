@@ -10,7 +10,7 @@
                 @Html.ActionLink("Hello " + User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
 
             </li>
-           <li>@Ajax.ActionLink("Logout", "Logout","Authentication",new AjaxOptions() { HttpMethod="POST"})</li>
+           <li>@Html.ActionLink("Logout", "Logout","Authentication")</li>
         </ul>
     }
 }

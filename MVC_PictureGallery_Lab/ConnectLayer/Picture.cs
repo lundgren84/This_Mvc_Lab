@@ -25,9 +25,10 @@ namespace ConnectLayer
         public string Url { get; set; }
         public Nullable<int> Size { get; set; }
         public Nullable<System.Guid> AlbumRefID { get; set; }
+        public Nullable<bool> Public { get; set; }
     
         public virtual Album Album { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }      
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

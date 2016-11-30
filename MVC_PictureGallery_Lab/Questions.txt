@@ -2,3 +2,13 @@ Multi upload
 Partial view / PictureCOntroller [Post]Create
 Create/Picture view "Hiddenfield"
 AddPicture/Album  Events= onclick mm
+
+
+
+
+
+Todo
+Pictures Public?
+Abum add users
+View logged in albums
+View only Prublic pictures in Open_Gallery

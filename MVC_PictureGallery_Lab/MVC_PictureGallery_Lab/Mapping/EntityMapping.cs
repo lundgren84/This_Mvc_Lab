@@ -20,7 +20,7 @@ namespace MVC_PictureGallery_Lab.Mapping
                 LastName = model.Lastname,
                 Email = model.Email,
                 Hash = model.Hash,
-                Salt = model.Salt
+          
             };
             return Entity;
         }
@@ -32,8 +32,7 @@ namespace MVC_PictureGallery_Lab.Mapping
                 Fistname = Entity.FirstName,
                 Lastname = Entity.LastName,
                 Email = Entity.Email,
-                Hash = Entity.Hash,
-                Salt = Entity.Salt,
+                Hash = Entity.Hash,           
             };
             return Model;
         }

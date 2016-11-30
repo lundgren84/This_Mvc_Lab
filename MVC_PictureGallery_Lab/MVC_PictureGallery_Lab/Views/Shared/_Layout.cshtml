@@ -7,12 +7,17 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
    
-
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
     <script src="~/JavaScripts/Growl/jquery.growl.js"></script>
     <link href="~/JavaScripts/Growl/jquery.growl.css" rel="stylesheet" />
     <script src="~/JavaScripts/Main.js"></script>
     <link href="~/Style/Main.css" rel="stylesheet" />
+
+
+ 
 
     @* Picture Upload *@
     <link href="~/Style/PictureUpload.css" rel="stylesheet" />
@@ -27,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Albums", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Albums", "Index", "Album", new { area = "" }, new { @class = "navbar-brand" })
               
             </div>
             <div class="navbar-collapse collapse">
@@ -46,8 +51,6 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
 </body>
 </html>

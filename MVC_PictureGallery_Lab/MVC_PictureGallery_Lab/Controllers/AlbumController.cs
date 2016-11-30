@@ -6,16 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
 namespace MVC_PictureGallery_Lab.Controllers
 {
+  [Authorize]
     public class AlbumController : Controller
     {
         // GET: Album
         public ActionResult Index()
-        {       
+        {
+            //var identity = User.Identity as ClaimsIdentity;
+            //var email = identity.FindFirst("name").Value;
+
             return View();
         }
         public ActionResult List()
@@ -24,28 +29,25 @@ namespace MVC_PictureGallery_Lab.Controllers
             Albums.GetPictures();
             return PartialView("List", Albums);
         }
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
         [HttpPost]
         public ActionResult Create(AlbumViewModel Model)
-        {
-
-        
+        { 
             if (ModelState.IsValid)
             {
-                Model.Id = Guid.NewGuid();   
-                Crud.CreateAlbum(Model.ToEntity());
-                return Redirect("~/Home/Index");
+                Crud.CreateAlbum(Model.ToEntity());            
             }
-            return View(Model);
-        }
+            //return PartialView("_Empty");
+            return List();
+        }       
         public ActionResult Details(Guid Id)
         {
             var Model = Crud.GetAlbums(Id).ToModel();
             Model.Pictures = Crud.GetAlbumPictures(Model.Id).ToModelList();
-            return View(Model);
+            return View("Details",Model);
         }
         public ActionResult AddPictures(Guid Id)
         {
@@ -67,17 +69,13 @@ namespace MVC_PictureGallery_Lab.Controllers
             Crud.CreatePicture(PictureModel.ToEntity());
             //Spara ny bild med album ref id (skika till någon vettig plats!)
             return RedirectToAction("Details",new { id = Model.Id });
-        }
+        }   
+        [HttpPost]
         public ActionResult Delete(Guid Id)
         {
             var Model = Crud.GetAlbum(Id).ToModel();
-            return View(Model);
-        }
-        [HttpPost]
-        public ActionResult Delete(AlbumViewModel model)
-        {
-            Crud.DeleteAlbum(model.ToEntity());
-            return Redirect("~/Home/Index");
+            Crud.DeleteAlbum(Model.ToEntity());
+            return PartialView("_Empty");
         }
 
 

@@ -117,6 +117,7 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
+                album.Id = Guid.NewGuid();
                 ctx.Albums.Add(album);
                 ctx.SaveChanges();
             }

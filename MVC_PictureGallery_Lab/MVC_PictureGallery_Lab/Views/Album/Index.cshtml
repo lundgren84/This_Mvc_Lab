@@ -1,18 +1,41 @@
 ﻿@model MVC_PictureGallery_Lab.Models.AlbumViewModel
-Button
+
+<button type="button" class="btn btn-default" id="ShowAlbumForm">Add new Album</button>
+
+@{
+    var options = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "Albums"
+    };
+}
+
+@using (Ajax.BeginForm("Create", options))
+{
+    <div class="form-horizontal">
+        @Html.Partial("Create")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
 <div class="container">
-    @* Button Add new Album *@
-    @* Albumform *@
+    <hr />
     <div class="row">
-        <div class="col-xs-3">@Html.DisplayNameFor(model => model.Name)</div>
-        <div class="col-xs-2">@Html.DisplayNameFor(model => model.Topic)<</div>
-        <div class="col-xs-2">Images</div>
+        <div class="col-xs-3"><strong>@Html.DisplayNameFor(model => model.Name)</strong></div>
+        <div class="col-xs-2"><strong>@Html.DisplayNameFor(model => model.Topic)</strong></div>
+        <div class="col-xs-2"><strong>Images</strong></div>
         <div class="col-xs-3">
 
         </div>
     </div>
-    @{
-        Html.RenderAction("List");
-    }
-
+    <div id="Albums">
+        @{
+            Html.RenderAction("List");
+        }
+    </div>
 </div>
+

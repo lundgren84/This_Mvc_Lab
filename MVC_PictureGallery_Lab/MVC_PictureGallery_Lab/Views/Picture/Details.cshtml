@@ -28,12 +28,12 @@
                         }
                         else
                         {
-                           
+
                             <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
                         }
                     }
-                   
-                   
+
+
                 </div>
             </div>
         </div>
@@ -48,19 +48,35 @@
                         <ul>
                             <li>
                                 <span>@Model.Comments[x].Text </span><span><small> -(@Model.Comments[x].Account.UserName)</small></span>
+                                @{
 
-                                @*<span>@Html.ActionLink("Delete", "Delete", "Comment", new { id = Model.Comments[x].Id }, null)</span>*@
+                                    if (@Model.Comments[x].Account.UserName == User.Identity.Name)
+                                    {
+                                        var option = new AjaxOptions()
+                                        {
+                                            HttpMethod = "POST",
+                                            InsertionMode = InsertionMode.Replace,
+                                            UpdateTargetId = Model.Id.ToString()
+                                        };
+                                        <span id="@Model.Id">
+                                            @*@Ajax.ActionLink("Delete", "Delete", "Comment", new { id = Model.Comments[x].Id }, null)*@
+                                            @Ajax.ActionLink("Delete", "Delete","Comment",null, option,new { id = Model.Comments[x].Id });
+                                        </span>
+                                    }
+                                }
+
                             </li>
                         </ul>
-                    }
-                }
-                else {<p>No comments!</p>};
+                                        }
+                                    }
+                                    else
+                                    {<p>No comments!</p>};
 
             }
             else
             {
-            <p>No comments!</p>
-            }
+                                        <p>No comments!</p>
+                                    }
 
         </div>
     </div>

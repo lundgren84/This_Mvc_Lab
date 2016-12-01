@@ -38,16 +38,12 @@ namespace MVC_PictureGallery_Lab.Controllers
             }
             return View(Model);
         }
+        [HttpPost]
         public ActionResult Delete(Guid id)
         {
             var Model = Crud.GetComment(id).ToModel();
-            return View(Model);
-        }
-        [HttpPost]
-        public ActionResult Delete(CommentViewModel Model)
-        {
             Crud.DeleteComment(Model.ToEntity());
-            return Redirect("Details/Picture");
+            return RedirectToAction("Details","Picture");
         }
     }
 }

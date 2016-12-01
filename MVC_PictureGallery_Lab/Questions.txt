@@ -10,3 +10,4 @@ AddPicture/Album  Events= onclick mm
 Todo
 Delte comment
 Edit Logged in person
+show if picture is public

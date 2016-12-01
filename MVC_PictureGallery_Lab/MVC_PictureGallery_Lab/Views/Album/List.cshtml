@@ -12,7 +12,7 @@
     <div id="@item.Id" class="row">
         <div class="col-xs-3">@Html.DisplayFor(modelItem => item.Name)</div>
         <div class="col-xs-2">@Html.DisplayFor(modelItem => item.Topic)</div>
-        <div class="col-xs-2">32</div>
+        <div class="col-xs-2">@item.Pictures.Count</div>
         <div class="col-xs-3">
             @Ajax.ActionLink("Edit", "Edit", new { id = item.Id }, options) |      
             @Html.ActionLink("Details", "Details", "Album", new { id = item.Id }, null) | 

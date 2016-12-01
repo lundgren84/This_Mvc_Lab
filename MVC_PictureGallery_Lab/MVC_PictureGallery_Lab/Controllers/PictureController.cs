@@ -50,6 +50,10 @@ namespace MVC_PictureGallery_Lab.Controllers
         public ActionResult Details(Guid Id)
         {
             var Model = Crud.GetPicture(Id).ToModel();
+            foreach (var item in Model.Comments)
+            {
+                item.Account = Crud.GetAccount(item.Id).ToModel();
+            }
             return View(Model);
         }
         public ActionResult Edit(Guid Id)

@@ -1,11 +1,11 @@
 ﻿@model MVC_PictureGallery_Lab.Models.AlbumViewModel
-
 <div>
     <h4>AlbumViewModel</h4>
     <hr />
     @*@Html.ActionLink("Add Picture", "AddPictures","Album", new { id = Model.Id })*@
     <a href="@Url.Action("AddPictures","Album",new { Id = Model.Id }, null)">Add Picture</a> |
-    <a href="@Url.Action("Delete","Album",new { Id = Model.Id }, null)">Delete Album</a>
+    <a href="@Url.Action("Delete","Album",new { Id = Model.Id }, null)">Delete Album</a> | 
+    @Html.ActionLink("Back", "Index")
         <dl class="dl-horizontal">
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
@@ -19,7 +19,10 @@
         @for (var x = 0; x < Model.Pictures.Count; x++)
         {
             <a href="@Url.Action("Details","Picture",new { Id = Model.Pictures[x].Id }, null)">
-                <img src="@Url.Content($"{Model.Pictures[x].Url}")" alt=". . .ALT. . .">
+                <div class="img--back">
+                    <img src="@Url.Content($"{Model.Pictures[x].Url}")" />
+                </div>
             </a>
         }
+
 </div>

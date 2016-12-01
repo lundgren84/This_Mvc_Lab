@@ -24,6 +24,7 @@ namespace MVC_PictureGallery_Lab.Controllers
 
             return View();
         }
+     
         public ActionResult List()
         {
             //Get Account
@@ -31,14 +32,14 @@ namespace MVC_PictureGallery_Lab.Controllers
             AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
             //Get Accounts Album
             List<AlbumViewModel> Albums = Crud.AccGetAlbums(acc.Id).ToModelList();
+            
             Albums.GetPictures();
+            Albums.OrderByDescending(x => x.Name);
             return PartialView("List", Albums);
         }
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+    
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(AlbumViewModel Model)
         { 
             if (ModelState.IsValid)
@@ -46,9 +47,8 @@ namespace MVC_PictureGallery_Lab.Controllers
                 var AccUserName = User.Identity.Name;
                 AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
                 Model.Account = acc;
-                Crud.CreateAlbum(Model.ToEntity());            
-            }
-            //return PartialView("_Empty");
+                Crud.CreateOrUpdate(Model.ToEntity());            
+            }         
             return List();
         }       
         public ActionResult Details(Guid Id)
@@ -63,6 +63,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View(model);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddPictures(bool Public,AlbumViewModel Model, HttpPostedFileBase file)
         {
             PictureViewModel PictureModel = new PictureViewModel();
@@ -85,6 +86,23 @@ namespace MVC_PictureGallery_Lab.Controllers
             var Model = Crud.GetAlbum(Id).ToModel();
             Crud.DeleteAlbum(Model.ToEntity());
             return PartialView("_Empty");
+        }
+        [HttpPost]
+        public ActionResult Edit(Guid Id)
+        {
+            var Model = Crud.GetAlbum(Id).ToModel();
+
+            return PartialView("_Edit", Model);
+        }
+        [HttpPost]
+        public ActionResult SaveEdit(AlbumViewModel Model)
+        {
+            var AccUserName = User.Identity.Name;
+            AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
+            Model.Account = acc;
+            Crud.CreateOrUpdate(Model.ToEntity());
+               
+            return PartialView("_SingleAlbum",Model);
         }
 
 

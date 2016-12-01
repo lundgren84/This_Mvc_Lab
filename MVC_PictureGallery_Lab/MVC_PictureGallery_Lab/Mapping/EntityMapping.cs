@@ -18,6 +18,7 @@ namespace MVC_PictureGallery_Lab.Mapping
             {
                 Id = Entity.Id,
                 UserName = Entity.UserName,
+                
             };
             return Model;
         }
@@ -38,7 +39,11 @@ namespace MVC_PictureGallery_Lab.Mapping
                 Id = model.Id,
                 Name = model.Name,
                 Topic = model.Topic,
-                AccountRefID = model.Account.Id
+               
+            };
+            if(model.Account != null)
+            {
+                Entity.AccountRefID = model.Account.Id;
             };
             return Entity;
         }
@@ -71,7 +76,8 @@ namespace MVC_PictureGallery_Lab.Mapping
             {
                 Id = model.Id,
                 Text = model.Text,
-                PictureRefID = model.Picture.Id
+                PictureRefID = model.Picture.Id,
+                AccountRefID = model.Account.Id
             };
             return Entity;
         }

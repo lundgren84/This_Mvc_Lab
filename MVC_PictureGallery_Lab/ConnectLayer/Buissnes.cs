@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +55,7 @@ namespace ConnectLayer
             }
         }
 
-       
+
 
         public static List<Picture> GetAlbumPictures(Guid id)
         {
@@ -68,7 +69,16 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
-                return ctx.Accounts.Single(x=>x.UserName == accUserName);
+                return ctx.Accounts.Single(x => x.UserName == accUserName);
+            }
+        }
+
+        public static Account GetAccount(Guid CommentId)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                var comment = ctx.Comments.Find(CommentId);
+                return ctx.Accounts.SingleOrDefault(x => x.Id == comment.AccountRefID);
             }
         }
 
@@ -76,6 +86,7 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
+
                 return ctx.Albums.Find(id);
             }
         }
@@ -84,6 +95,7 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
+                comment.Id = Guid.NewGuid();
                 ctx.Comments.Add(comment);
                 ctx.SaveChanges();
             }
@@ -126,10 +138,10 @@ namespace ConnectLayer
                 var Album = ctx.Albums.Find(album.Id);
                 //Alla bilder från det albumet
                 var Pictures = ctx.Pictures.Where(x => x.AlbumRefID == album.Id).ToList<Picture>();
-               //Alla kommentarer på alla bilder
+                //Alla kommentarer på alla bilder
                 foreach (var item in Pictures)
                 {
-                    var comments = ctx.Comments.Where(x=> x.PictureRefID == item.Id).ToList<Comment>();
+                    var comments = ctx.Comments.Where(x => x.PictureRefID == item.Id).ToList<Comment>();
                     Comments.AddRange(comments);
 
                 }
@@ -138,6 +150,22 @@ namespace ConnectLayer
                 ctx.Albums.Remove(Album);
                 ctx.SaveChanges();
 
+            }
+        }
+
+        public static void CreateOrUpdate(Album album)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                var entity =
+                    ctx.Albums.FirstOrDefault(x => x.Id == album.Id)
+                ?? new Album() { Id = Guid.NewGuid()};
+
+                entity.Name = album.Name;
+                entity.Topic = album.Topic;
+                entity.AccountRefID = album.AccountRefID;
+                ctx.Albums.AddOrUpdate(entity);
+                ctx.SaveChanges();
             }
         }
 

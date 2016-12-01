@@ -153,6 +153,10 @@
     <Content Include="JavaScripts\PictureUpload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -160,8 +164,15 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Style\FlexPictures.css" />
+    <Content Include="Style\ImgPresentation\ImgPresentation_CSS.css" />
+    <Content Include="Style\ImgPresentation\ImgPresentation_JS.js" />
     <Content Include="Style\jquery.growl.css" />
     <Content Include="Style\Main.css" />
     <Content Include="Style\PictureUpload.css" />
@@ -177,6 +188,7 @@
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="ExtraClasses\ExtendedMethods.cs" />
+    <Compile Include="ExtraClasses\HelperClass.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +233,8 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Authentication\Register.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Album\_Edit.cshtml" />
+    <Content Include="Views\Album\_SingleAlbum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

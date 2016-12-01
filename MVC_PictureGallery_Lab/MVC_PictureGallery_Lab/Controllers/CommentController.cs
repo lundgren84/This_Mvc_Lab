@@ -24,12 +24,15 @@ namespace MVC_PictureGallery_Lab.Controllers
                 };
             return View(model);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Create(CommentViewModel Model)
         {
             if (ModelState.IsValid)
             {
-                Model.Id = Guid.NewGuid();             
+                var AccUserName = User.Identity.Name;
+                AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
+                Model.Account = acc;         
                 Crud.CreateComment(Model.ToEntity());
                 return RedirectToAction("Details","Picture", new { id = Model.Picture.Id });
             }

@@ -13,5 +13,5 @@ AntiForgeryTokens
 
 <H1> Todo </H1>
 Delte comment (on all in your Album)
-Edit Logged in person
+Edit Logged in person (Add email and more props)
 show if picture is public

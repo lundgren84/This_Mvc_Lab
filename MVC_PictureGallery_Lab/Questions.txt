@@ -1,13 +1,17 @@
-Multi upload
-Partial view / PictureCOntroller [Post]Create
+
 Create/Picture view "Hiddenfield"
-AddPicture/Album  Events= onclick mm
+
+
+
+<H1> Questions </H1>
+Area
+AntiForgeryTokens
 
 
 
 
 
-Todo
-Delte comment
+<H1> Todo </H1>
+Delte comment (on all in your Album)
 Edit Logged in person
 show if picture is public

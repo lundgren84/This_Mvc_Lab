@@ -47,6 +47,27 @@ namespace ConnectLayer
             }
         }
 
+        public static bool CreateOrUpdate(Account account)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                try
+                {
+                    var Entity = ctx.Accounts.FirstOrDefault(x => x.Id == account.Id)
+                                  ?? new Account() { Id = Guid.NewGuid() };
+
+                    //Entity.UserName = account.UserName;
+                    //ctx.Accounts.AddOrUpdate(Entity);
+                    //ctx.SaveChanges();
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
         public static Album GetAlbums(Guid id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
@@ -159,7 +180,7 @@ namespace ConnectLayer
             {
                 var entity =
                     ctx.Albums.FirstOrDefault(x => x.Id == album.Id)
-                ?? new Album() { Id = Guid.NewGuid()};
+                ?? new Album() { Id = Guid.NewGuid() };
 
                 entity.Name = album.Name;
                 entity.Topic = album.Topic;

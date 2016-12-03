@@ -84,6 +84,16 @@ namespace ConnectLayer
            
         }
 
+        public static List<Comment> GetComment(Guid id, string idType)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                if(idType == "picture")
+               return ctx.Comments.Where(x => x.PictureRefID == id).ToList();      
+            }
+            return null;
+        }
+
         public static Album GetAlbums(Guid id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())

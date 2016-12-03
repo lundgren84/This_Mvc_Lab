@@ -14,8 +14,16 @@
                 <a href="@Url.Action("Details","Picture",new { Id = Model.Pictures[x].Id }, null)">
                     <span class="img--back">
                         <img src="@Url.Content($"{Model.Pictures[x].Url}")" />
-                        @* FIX!!! *@
-                        Comments (8)  Public //FIX ME!!!
+                        @{
+                            if (Model.Pictures[x].Public == true)
+                            {
+                                <span style="color:green">Public</span>
+                            }
+                            else
+                            { <span style="color:red">Private</span> }
+                            <span>(@Model.Pictures[x].Comments.Count)</span>
+                        }
+                       
                     </span>
                 </a>        
             </span>

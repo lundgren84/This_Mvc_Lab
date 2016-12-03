@@ -14,4 +14,3 @@ AntiForgeryTokens
 <H1> Todo </H1>
 JS validations	
 Edit Logged in person (Add email and more props)
-show if picture is public

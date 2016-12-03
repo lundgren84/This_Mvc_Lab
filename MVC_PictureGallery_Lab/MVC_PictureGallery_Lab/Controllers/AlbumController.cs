@@ -55,6 +55,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         {
             var Model = Crud.GetAlbums(Id).ToModel();
             Model.Pictures = Crud.GetAlbumPictures(Model.Id).ToModelList();
+            Model.Pictures.ForEach(model => model.Comments = Crud.GetComment(model.Id, "picture").ToModelList());
             return View("Details",Model);
         }
         public ActionResult AddPictures(Guid Id)

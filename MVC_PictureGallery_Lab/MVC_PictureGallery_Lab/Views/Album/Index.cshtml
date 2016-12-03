@@ -13,6 +13,7 @@
 
 @using (Ajax.BeginForm("Create", options))
 {
+    @Html.AntiForgeryToken();
     <div class="form-horizontal">
         @Html.Partial("Create")
         <div class="form-group">

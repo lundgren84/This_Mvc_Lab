@@ -22,7 +22,6 @@ namespace MVC_PictureGallery_Lab.Controllers
         {
             var context = new MyIdentityDbContext();
             var store = new UserStore<IdentityUser>(context);
-
             userManager = new UserManager<IdentityUser>(store);
         }
         // GET: Authentication

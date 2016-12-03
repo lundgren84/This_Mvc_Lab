@@ -10,9 +10,9 @@
 <div id="@Model.Id">
     @using (Ajax.BeginForm("SaveEdit", options))
     {
+        @Html.AntiForgeryToken()
         @Html.HiddenFor(x => x.Id);
-        {
-            @Html.AntiForgeryToken()
+        {       
             <div class="col-xs-3">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { id = "txtbox", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })

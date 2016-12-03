@@ -215,8 +215,6 @@
     <Content Include="Views\Picture\Details.cshtml" />
     <Content Include="Views\Picture\Edit.cshtml" />
     <Content Include="Views\Comment\Create.cshtml" />
-    <Content Include="Views\Comment\Succeeded.cshtml" />
-    <Content Include="Views\Picture\Delete.cshtml" />
     <Content Include="Views\Album\Details.cshtml" />
     <Content Include="Views\Album\AddPictures.cshtml" />
     <Content Include="Views\Album\Delete.cshtml" />
@@ -236,6 +234,7 @@
     <Content Include="Views\Comment\_Empty.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\_Result.cshtml" />
+    <Content Include="Views\Picture\_Empty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

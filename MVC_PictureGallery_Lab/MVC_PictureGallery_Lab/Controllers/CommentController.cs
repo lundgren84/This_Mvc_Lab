@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC_PictureGallery_Lab.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         // GET: Comment
@@ -16,6 +17,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         {
             return View();
         }
+        [Authorize]
         public ActionResult Create(Guid Id)
         {
                 var model = new CommentViewModel()
@@ -26,6 +28,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CommentViewModel Model)
         {
             if (ModelState.IsValid)
@@ -38,12 +41,12 @@ namespace MVC_PictureGallery_Lab.Controllers
             }
             return View(Model);
         }
-        [HttpPost]
+       [Authorize]
         public ActionResult Delete(Guid id)
         {
             var Model = Crud.GetComment(id).ToModel();
             Crud.DeleteComment(Model.ToEntity());
-            return RedirectToAction("Details","Picture");
+            return PartialView("_Empty");
         }
     }
 }

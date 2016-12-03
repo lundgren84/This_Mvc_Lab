@@ -68,6 +68,22 @@ namespace ConnectLayer
             }
         }
 
+        public static Account GetAccount(Guid id, string Type)
+        {
+            var accid = new Guid();
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                if (Type == "album")
+                {
+                    var album = ctx.Albums.SingleOrDefault(x=>x.Id == id);
+                    accid = (Guid)album.AccountRefID;
+                }
+                return ctx.Accounts.FirstOrDefault(x=>x.Id == accid);
+            }
+            
+           
+        }
+
         public static Album GetAlbums(Guid id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())

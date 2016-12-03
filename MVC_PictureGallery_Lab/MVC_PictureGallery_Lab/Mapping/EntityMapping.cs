@@ -70,8 +70,9 @@ namespace MVC_PictureGallery_Lab.Mapping
         {
             if (model.Picture == null)
             {
-                model.Picture = new PictureViewModel();
+                model.Picture = new PictureViewModel() {Id = new Guid() };
             }
+            if(model.Account == null) { model.Account = new AccountViewModel() { Id = new Guid() }; }
             var Entity = new Comment()
             {
                 Id = model.Id,

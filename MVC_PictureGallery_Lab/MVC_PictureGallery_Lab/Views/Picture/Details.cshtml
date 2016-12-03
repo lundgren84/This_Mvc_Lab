@@ -37,6 +37,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <h3>Comments</h3>
             @if (Model.Comments != null)
@@ -45,39 +46,36 @@
                 {
                     for (var x = 0; x < @Model.Comments.Count; x++)
                     {
-                        <ul>
+                        <ul id="@Model.Id">
                             <li>
-                                <span>@Model.Comments[x].Text </span><span><small> -(@Model.Comments[x].Account.UserName)</small></span>
-                                @{
-
-                                    if (@Model.Comments[x].Account.UserName == User.Identity.Name)
-                                    {
-                                        var option = new AjaxOptions()
+                                <p>
+                                    <span>@Model.Comments[x].Text </span><span><small> -(@Model.Comments[x].Account.UserName)</small></span>
+                                    @{
+                                        if (@Model.Comments[x].Account.UserName == User.Identity.Name || User.Identity.Name == ViewBag.Olle.UserName)
                                         {
-                                            HttpMethod = "POST",
-                                            InsertionMode = InsertionMode.Replace,
-                                            UpdateTargetId = Model.Id.ToString()
-                                        };
-                                        <span id="@Model.Id">
-                                            @*@Ajax.ActionLink("Delete", "Delete", "Comment", new { id = Model.Comments[x].Id }, null)*@
-                                            @Ajax.ActionLink("Delete", "Delete","Comment",null, option,new { id = Model.Comments[x].Id });
-                                        </span>
-                                    }
-                                }
-
-                            </li>
-                        </ul>
+                                            var option = new AjaxOptions()
+                                            {
+                                                HttpMethod = "POST",
+                                                InsertionMode = InsertionMode.Replace,
+                                                UpdateTargetId = Model.Id.ToString()
+                                            };
+                                            <span >
+                                                @Ajax.ActionLink("Delete", "Delete", "Comment", new { id = Model.Comments[x].Id }, option)
+                                            </span>
                                         }
                                     }
-                                    else
-                                    {<p>No comments!</p>};
-
+                                </p>
+                            </li>
+                        </ul>
+                                            }
+                                        }
+                                        else
+                                        {<p>No comments!</p>};
             }
             else
             {
-                                        <p>No comments!</p>
-                                    }
-
+                                            <p>No comments!</p>
+                                        }
         </div>
     </div>
 </div>

@@ -95,6 +95,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             return PartialView("_Edit", Model);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SaveEdit(AlbumViewModel Model)
         {
             var AccUserName = User.Identity.Name;

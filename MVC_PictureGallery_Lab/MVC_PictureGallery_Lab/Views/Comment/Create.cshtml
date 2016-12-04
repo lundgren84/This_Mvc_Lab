@@ -12,7 +12,7 @@
     @using (Ajax.BeginForm("Create", "Comment", @Model.Picture, options, new { id = "ThisForm" }))
     {
         @Html.AntiForgeryToken()
-
+        @Html.HiddenFor(model => model.Picture)
         <div class="form-horizontal">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -26,10 +26,7 @@
                     <input type="submit" value="Add" name="name" class="btn btn-default" />
                 </div>
                
-            </div>
-            @* @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control hidden" } });*@
-            @Html.HiddenFor(model => model.Picture)
-
+            </div>         
             <div class="form-group">
                 <div class="col-md-2">
                     @Html.Label("", htmlAttributes: new { id = "error" })

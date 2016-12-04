@@ -52,7 +52,7 @@ namespace MVC_PictureGallery_Lab.Controllers
 
             var Model = Crud.GetPicture(Id).ToModel();
             var acc = Crud.GetAccount(Model.AlbumRefID,"album");
-            ViewBag.Olle = acc;
+            ViewBag.Name = acc.UserName;
             foreach (var item in Model.Comments)
             {
                 item.Account = Crud.GetAccount(item.Id).ToModel();

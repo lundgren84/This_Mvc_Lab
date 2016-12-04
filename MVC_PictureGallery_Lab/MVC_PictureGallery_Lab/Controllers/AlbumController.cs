@@ -67,19 +67,24 @@ namespace MVC_PictureGallery_Lab.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddPictures(bool Public,AlbumViewModel Model, HttpPostedFileBase file)
         {
-            PictureViewModel PictureModel = new PictureViewModel();
-            //Save file in Project
-            file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
-            //Fill Picture Model
-            PictureModel.Public = Public;
-            PictureModel.Name = file.FileName;
-            PictureModel.Url = $@"/Pictures/" + file.FileName;
-            PictureModel.Size = file.ContentLength;
-            PictureModel.Id = Guid.NewGuid();
-            PictureModel.AlbumRefID = Model.Id;
-            Crud.CreatePicture(PictureModel.ToEntity());
-            //Spara ny bild med album ref id (skika till någon vettig plats!)
-            return RedirectToAction("Details",new { id = Model.Id });
+            if(file != null)
+            {
+                PictureViewModel PictureModel = new PictureViewModel();
+                //Save file in Project
+                file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
+                //Fill Picture Model
+                PictureModel.Public = Public;
+                PictureModel.Name = file.FileName;
+                PictureModel.Url = $@"/Pictures/" + file.FileName;
+                PictureModel.Size = file.ContentLength;
+                PictureModel.Id = Guid.NewGuid();
+                PictureModel.AlbumRefID = Model.Id;
+                Crud.CreatePicture(PictureModel.ToEntity());
+                //Spara ny bild med album ref id (skika till någon vettig plats!)
+                return RedirectToAction("Details", new { id = Model.Id });
+            }
+            return View(Model);
+       
         }   
         [HttpPost]
         public ActionResult Delete(Guid Id)

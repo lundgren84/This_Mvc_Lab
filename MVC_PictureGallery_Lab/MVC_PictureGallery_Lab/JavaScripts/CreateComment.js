@@ -1,4 +1,5 @@
-﻿(function () {
+﻿
+(function () {
     //Getting the form
     var form = document.getElementById("ThisForm");
 
@@ -23,9 +24,3 @@
 
 
 
-function validateComment() {
-    var error = document.getElementById("error")
-
-    $.growl.notice({ message: "Olle was here!Olle was here!Olle was here!Olle was here!Olle was here!" });
-    error.innerHTML = "Olle was here!";
-}

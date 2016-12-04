@@ -1,0 +1,34 @@
+﻿
+@if (Model != null)
+{
+    foreach (var item in Model.Comments)
+    {
+        var option = new AjaxOptions()
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = item.Id.ToString()
+        };
+        <ul id="item.Id">
+            <li>
+                <p>
+                    <span>@item.Text </span><span><small> -(@item.Account.UserName)</small></span>
+                    @{
+                        if (item.Account.UserName == User.Identity.Name || User.Identity.Name == ViewBag.Name)
+                        {
+                         
+                            <span>
+                                @Ajax.ActionLink("Delete", "Delete", "Comment", new { id = item.Id }, option)
+                            </span>
+                        }
+                    }
+                </p>
+            </li>
+        </ul>
+                            }
+                        }
+                        else
+                        {
+                            <p>No Comments!</p>
+                        }
+                      

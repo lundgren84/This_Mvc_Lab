@@ -5,12 +5,14 @@ Create/Picture view "Hiddenfield"
 
 <H1> Questions </H1>
 Area
-AntiForgeryTokens
 
 
 
 
 
 <H1> Todo </H1>
+
 JS validations	
 Edit Logged in person (Add email and more props)
+
+---> Delete Comment // BUG!!  Creates a thread....creates 2 comments and delete BUGS!!!

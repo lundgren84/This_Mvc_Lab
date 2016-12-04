@@ -159,8 +159,17 @@ namespace ConnectLayer
         public static void DeleteComment(Comment comment)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
+            {              
+                    var Entity = ctx.Comments.Find(comment.Id);
+                    ctx.Comments.Remove(Entity);
+                    ctx.SaveChanges();  
+            }
+        }
+        public static void DeleteComment(Guid id)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
             {
-                var Entity = ctx.Comments.Find(comment.Id);
+                var Entity = ctx.Comments.Find(id);
                 ctx.Comments.Remove(Entity);
                 ctx.SaveChanges();
             }

@@ -17,65 +17,32 @@
         <div class="col-md-offset-1 col-xs-12 ">
             <img src="@Model.Url" />
         </div>
-
-        <div class="form-group">
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.Identity.Name == ViewBag.Name)
+                {
+                 @Html.ActionLink("Delete","Delete",new { id = Model.Id});
+                }
+            }
+        </div>
+        <div class="form-group imgDiv">
             <div class="col-md-offset-1 col-md-10">
                 <div>
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
-                            <span>@Html.ActionLink("Add Comment", "Create", "Comment", new { id = Model.Id }, null)</span>
+                            Html.RenderAction("Create", "Comment");
                         }
                         else
                         {
 
                             <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
+                            Html.RenderAction("List", "Comment");
                         }
                     }
-
-
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <h3>Comments</h3>
-            @if (Model.Comments != null)
-            {
-                if (Model.Comments.Count > 0)
-                {
-                    for (var x = 0; x < @Model.Comments.Count; x++)
-                    {
-                        <ul id="@Model.Id">
-                            <li>
-                                <p>
-                                    <span>@Model.Comments[x].Text </span><span><small> -(@Model.Comments[x].Account.UserName)</small></span>
-                                    @{
-                                        if (@Model.Comments[x].Account.UserName == User.Identity.Name || User.Identity.Name == ViewBag.Olle.UserName)
-                                        {
-                                            var option = new AjaxOptions()
-                                            {
-                                                HttpMethod = "POST",
-                                                InsertionMode = InsertionMode.Replace,
-                                                UpdateTargetId = Model.Id.ToString()
-                                            };
-                                            <span >
-                                                @Ajax.ActionLink("Delete", "Delete", "Comment", new { id = Model.Comments[x].Id }, option)
-                                            </span>
-                                        }
-                                    }
-                                </p>
-                            </li>
-                        </ul>
-                                            }
-                                        }
-                                        else
-                                        {<p>No comments!</p>};
-            }
-            else
-            {
-                                            <p>No comments!</p>
-                                        }
         </div>
     </div>
 </div>

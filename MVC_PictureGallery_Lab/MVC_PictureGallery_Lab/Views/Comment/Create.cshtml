@@ -1,36 +1,47 @@
 ﻿@model MVC_PictureGallery_Lab.Models.CommentViewModel
-
-@using (Html.BeginForm("Create", "Comment", FormMethod.Post, new { id = "ThisForm"}))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Comment @Model.Picture.Name</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new {htmlAttributes = new { id = "CommentTxt", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-2">
-                @Html.Label("", htmlAttributes: new { id = "error" })
-            </div>
-        </div>
-         @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control hidden" } });
-       @* @Html.HiddenFor(model => model.Picture)*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" name="name" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+@{ 
+    var options = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "commentResult",
+    };
 }
-<style>
-    .hidden {
-        visibility: hidden;
+
+    @*@using (Ajax.BeginForm("Create", "Comment", FormMethod.Post, new { id = "ThisForm" }))*@
+    @using (Ajax.BeginForm("Create", "Comment", @Model.Picture, options, new { id = "ThisForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { id = "CommentTxt", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-5">
+                    <input type="submit" value="Add" name="name" class="btn btn-default" />
+                </div>
+               
+            </div>
+            @* @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control hidden" } });*@
+            @Html.HiddenFor(model => model.Picture)
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    @Html.Label("", htmlAttributes: new { id = "error" })
+                </div>
+            </div>
+        </div>
+
     }
-</style>
+<div id="commentResult">
+    @{ 
+        Html.RenderAction("List",new { Id = @Model.Picture.Id });
+    }
+</div>
+
 <script src="~/JavaScripts/CreateComment.js"></script>

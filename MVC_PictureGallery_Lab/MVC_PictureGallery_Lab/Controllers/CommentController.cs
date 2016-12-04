@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC_PictureGallery_Lab.Controllers
 {
-    [Authorize]
+   
     public class CommentController : Controller
     {
         // GET: Comment
@@ -29,24 +29,39 @@ namespace MVC_PictureGallery_Lab.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CommentViewModel Model)
+        public ActionResult Create(CommentViewModel CommentModel,PictureViewModel Model)
         {
-            if (ModelState.IsValid)
+            
+            if (CommentModel.Text.Length != 0)
             {
                 var AccUserName = User.Identity.Name;
                 AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();
-                Model.Account = acc;         
-                Crud.CreateComment(Model.ToEntity());
-                return RedirectToAction("Details","Picture", new { id = Model.Picture.Id });
+                CommentModel.Account = acc;
+                CommentModel.Picture = Model;       
+                Crud.CreateComment(CommentModel.ToEntity());
+               
             }
-            return View(Model);
+            return List(Model.Id);
         }
        [Authorize]
         public ActionResult Delete(Guid id)
         {
             var Model = Crud.GetComment(id).ToModel();
-            Crud.DeleteComment(Model.ToEntity());
+            Crud.DeleteComment(id);
             return PartialView("_Empty");
+        }
+      
+        public ActionResult List(Guid Id)
+        {
+            var Picture = Crud.GetPicture(Id).ToModel();
+            var acc = Crud.GetAccount(Picture.AlbumRefID, "album");
+            ViewBag.Name = acc.UserName;
+            foreach (var item in Picture.Comments)
+            {
+                item.Account = Crud.GetAccount(item.Id).ToModel();
+            }
+            //Picture.Comments.OrderBy(x=>x.)
+            return PartialView("List",Picture);
         }
     }
 }

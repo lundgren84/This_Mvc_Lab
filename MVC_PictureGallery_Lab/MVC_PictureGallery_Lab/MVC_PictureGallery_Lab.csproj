@@ -235,6 +235,8 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\_Result.cshtml" />
     <Content Include="Views\Picture\_Empty.cshtml" />
+    <Content Include="Views\Shared\_Result.cshtml" />
+    <Content Include="Views\Comment\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

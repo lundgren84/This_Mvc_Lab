@@ -11,11 +11,34 @@
         };
     }
 
-    @using (Ajax.BeginForm("Create",null, options, new { id="AlbumForm" }))
+    @using (Ajax.BeginForm("Create",options))
     {
         @Html.AntiForgeryToken();
         <div class="form-horizontal">
-            @Html.Partial("Create")
+            @* Create *@
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { id = "txtbox", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        <p id="JSValidation"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Topic, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.Topic, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Topic, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+           @* Create *@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" id="AlbumFormSubmit" value="Create" class="btn btn-default" />
@@ -44,3 +67,5 @@
 <style>
 
 </style>
+
+<script src="~/JavaScripts/CreateAlbum.js"></script>

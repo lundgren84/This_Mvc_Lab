@@ -90,7 +90,8 @@ namespace ConnectLayer
             {
                 var Entity = ctx.Pictures.FirstOrDefault(m => m.Id == picture.Id)
                     ?? new Picture() { Id = Guid.NewGuid() };
-
+                Entity.Name = picture.Name;
+                Entity.Public = picture.Public;
                 ctx.Pictures.AddOrUpdate(Entity);
                 ctx.SaveChanges();
             }

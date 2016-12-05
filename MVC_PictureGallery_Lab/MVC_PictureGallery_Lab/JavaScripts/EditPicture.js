@@ -1,4 +1,7 @@
-﻿var form = $('#PictureEditFrom').hide();
+﻿
+
+
+var form = $('#PictureEditFrom').hide();
 var btn = $('#ShowEditPictureForm')
 
 $('#ShowEditPictureForm').click(function () {

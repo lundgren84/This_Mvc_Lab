@@ -28,13 +28,9 @@
                     <button type="button" class="btn btn-default" id="ShowEditPictureForm">Edit Picture</button>
                     <div id="PictureEditFrom">
                         @{
-                            Html.RenderAction("Edit");
+                            Html.RenderAction("Edit",new {id = Model.Id });
                         }
                     </div>
-
-
-
-
                 }
             }
         </div>
@@ -47,10 +43,11 @@
                             Html.RenderAction("Create", "Comment");
                         }
                         else
-                        {
+                        {                         
                             <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
                             Html.RenderAction("List", "Comment");
                         }
+
                     }
                 </div>
             </div>

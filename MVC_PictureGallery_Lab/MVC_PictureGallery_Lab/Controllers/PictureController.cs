@@ -61,9 +61,10 @@ namespace MVC_PictureGallery_Lab.Controllers
 
         }
         [Authorize]
-        public ActionResult Edit()
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var Model = Crud.GetPicture(id).ToModel();            
+            return PartialView(Model);
         }
         [HttpPost]
         [Authorize]
@@ -73,7 +74,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             Model.Public = model.Public;
             Model.Name = model.Name;
             Crud.CreateOrUpdate(Model.ToEntity());
-            return View(Model);
+            return PartialView(Model);
         }
        
         public ActionResult Delete(Guid id)

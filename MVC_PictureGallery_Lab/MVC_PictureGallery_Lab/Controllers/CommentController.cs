@@ -13,10 +13,6 @@ namespace MVC_PictureGallery_Lab.Controllers
     public class CommentController : Controller
     {
         // GET: Comment
-        public ActionResult Index()
-        {
-            return View();
-        }
         [Authorize]
         public ActionResult Create(Guid Id)
         {
@@ -44,9 +40,9 @@ namespace MVC_PictureGallery_Lab.Controllers
             return List(Model.Id);
         }
        [Authorize]
+       [HttpPost]
         public ActionResult Delete(Guid id)
         {
-            var Model = Crud.GetComment(id).ToModel();
             Crud.DeleteComment(id);
             return PartialView("_Empty");
         }
@@ -60,7 +56,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             {
                 item.Account = Crud.GetAccount(item.Id).ToModel();
             }
-            //Picture.Comments.OrderBy(x=>x.)
+      
             return PartialView("List",Picture);
         }
     }

@@ -46,7 +46,8 @@ namespace MVC_PictureGallery_Lab.Controllers
             Crud.DeleteComment(id);
             return PartialView("_Empty");
         }
-      
+    
+     
         public ActionResult List(Guid Id)
         {
             var Picture = Crud.GetPicture(Id).ToModel();

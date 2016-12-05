@@ -43,8 +43,9 @@
                             Html.RenderAction("Create", "Comment");
                         }
                         else
-                        {                         
-                            <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
+                        {    
+                            <div id="CommentsHereThx"></div>                     
+                            <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new {id = "loginLink" })</span>
                             Html.RenderAction("List", "Comment");
                         }
 

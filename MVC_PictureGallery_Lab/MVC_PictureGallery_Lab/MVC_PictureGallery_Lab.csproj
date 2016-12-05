@@ -148,6 +148,7 @@
     <Content Include="JavaScripts\EditPicture.js" />
     <Content Include="JavaScripts\Examples\AlnumIndex.js" />
     <Content Include="JavaScripts\Examples\main.js" />
+    <Content Include="JavaScripts\GetComments.js" />
     <Content Include="JavaScripts\Growl\jquery.growl.css" />
     <Content Include="JavaScripts\Growl\jquery.growl.js" />
     <Content Include="JavaScripts\Main.js" />

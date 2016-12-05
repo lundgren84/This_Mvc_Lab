@@ -59,7 +59,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             }
             return View(Model);
 
-        }
+        }    
         [Authorize]
         public ActionResult Edit(Guid id)
         {

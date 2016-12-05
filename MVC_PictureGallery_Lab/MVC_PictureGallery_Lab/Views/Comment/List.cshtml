@@ -9,8 +9,8 @@
             InsertionMode = InsertionMode.Replace,
             UpdateTargetId = item.Id.ToString()
         };
-        <div id="item.Id">
-            <ul >
+        <div id="@item.Id">
+            <ul>
                 <li>
                     <p>
                         <span>@item.Text </span><span><small> -(@item.Account.UserName)</small></span>
@@ -29,8 +29,4 @@
         </div>
                                 }
                             }
-                            else
-                            {
-                            <p>No Comments!</p>
-                        }
-                      
+                        

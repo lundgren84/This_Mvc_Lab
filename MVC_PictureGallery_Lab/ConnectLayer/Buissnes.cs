@@ -142,6 +142,7 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
+                comment.DateCreated = DateTime.Now;
                 comment.Id = Guid.NewGuid();
                 ctx.Comments.Add(comment);
                 ctx.SaveChanges();
@@ -215,7 +216,7 @@ namespace ConnectLayer
             {
                 var entity =
                     ctx.Albums.FirstOrDefault(x => x.Id == album.Id)
-                ?? new Album() { Id = Guid.NewGuid() };
+                ?? new Album() { Id = Guid.NewGuid(), DateCreated= DateTime.Now()  };
 
                 entity.Name = album.Name;
                 entity.Topic = album.Topic;
@@ -229,6 +230,7 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
+                album.DateCreated = DateTime.Now;
                 album.Id = Guid.NewGuid();
                 ctx.Albums.Add(album);
                 ctx.SaveChanges();

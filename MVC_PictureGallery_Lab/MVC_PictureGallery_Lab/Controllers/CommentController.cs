@@ -24,7 +24,7 @@ namespace MVC_PictureGallery_Lab.Controllers
                 {
                     Picture = Crud.GetPicture(Id).ToModel()
                 };
-            return View(model);
+            return PartialView(model);
         }
         [Authorize]
         [HttpPost]

@@ -84,6 +84,19 @@ namespace ConnectLayer
            
         }
 
+        public static void CreateOrUpdate(Picture picture)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                var Entity = ctx.Pictures.FirstOrDefault(m => m.Id == picture.Id)
+                    ?? new Picture() { Id = Guid.NewGuid() };
+
+                ctx.Pictures.AddOrUpdate(Entity);
+                ctx.SaveChanges();
+            }
+        }
+     
+
         public static List<Comment> GetComment(Guid id, string idType)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
@@ -216,7 +229,7 @@ namespace ConnectLayer
             {
                 var entity =
                     ctx.Albums.FirstOrDefault(x => x.Id == album.Id)
-                ?? new Album() { Id = Guid.NewGuid(), DateCreated= DateTime.Now()  };
+                ?? new Album() { Id = Guid.NewGuid(), DateCreated= DateTime.Now  };
 
                 entity.Name = album.Name;
                 entity.Topic = album.Topic;

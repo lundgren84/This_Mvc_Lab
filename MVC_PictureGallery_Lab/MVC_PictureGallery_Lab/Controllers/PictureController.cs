@@ -60,21 +60,22 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View(Model);
 
         }
-        public ActionResult Edit(Guid Id)
+        [Authorize]
+        public ActionResult Edit()
         {
-            var Model = Crud.GetPicture(Id).ToModel();
-            return View(Model);
+            return View();
         }
         [HttpPost]
-        public ActionResult Edit(PictureViewModel Model)
+        [Authorize]
+        public ActionResult Edit(PictureViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                Crud.EditPicture(Model.ToEntity());
-                return RedirectToAction("Details", new { id = Model.Id });
-            }
+            var Model = Crud.GetPicture(model.Id).ToModel();
+            Model.Public = model.Public;
+            Model.Name = model.Name;
+            Crud.CreateOrUpdate(Model.ToEntity());
             return View(Model);
         }
+       
         public ActionResult Delete(Guid id)
         {
             var Model = Crud.GetPicture(id).ToModel();

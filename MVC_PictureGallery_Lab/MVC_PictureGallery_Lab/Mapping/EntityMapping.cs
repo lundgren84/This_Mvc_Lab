@@ -54,6 +54,7 @@ namespace MVC_PictureGallery_Lab.Mapping
                 Id = Entity.Id,
                 Name = Entity.Name,
                 Topic = (AlbumTopic)((int)Entity.Topic),
+                DateCreated = (DateTime)Entity.DateCreated
             };
             return Model;
         }
@@ -61,6 +62,7 @@ namespace MVC_PictureGallery_Lab.Mapping
         {
             var Models = new List<AlbumViewModel>();
             Entites.ForEach(x => Models.Add(x.ToModel()));
+            Models.OrderBy(x => x.DateCreated);
             return Models;
         }
 
@@ -88,6 +90,7 @@ namespace MVC_PictureGallery_Lab.Mapping
             {
                 Id = Entity.Id,
                 Text = Entity.Text,
+                DateCreated = (DateTime)Entity.DateCreated
             };
             return Model;
         }
@@ -95,6 +98,7 @@ namespace MVC_PictureGallery_Lab.Mapping
         {
             var Models = new List<CommentViewModel>();
             Entites.ForEach(x => Models.Add(x.ToModel()));
+            Models.OrderBy(x => x.DateCreated);
             return Models;
         }
         //Picture

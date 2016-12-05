@@ -13,6 +13,7 @@ namespace MVC_PictureGallery_Lab.Models
         [Display(Name ="Comment")]
         public string Text { get; set; } 
         public PictureViewModel Picture { get; set; }
-        public AccountViewModel Account { get; set; }        
+        public AccountViewModel Account { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

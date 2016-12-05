@@ -22,7 +22,19 @@
             {
                 if (User.Identity.Name == ViewBag.Name)
                 {
-                 @Html.ActionLink("Delete Picture","Delete",new { id = Model.Id});
+
+                    @Html.ActionLink("Delete Picture", "Delete", new { id = Model.Id });
+                    <span> | </span>
+                    <button type="button" class="btn btn-default" id="ShowEditPictureForm">Edit Picture</button>
+                    <div id="PictureEditFrom">
+                        @{
+                            Html.RenderAction("Edit");
+                        }
+                    </div>
+
+
+
+
                 }
             }
         </div>
@@ -36,7 +48,6 @@
                         }
                         else
                         {
-
                             <span>@Html.ActionLink("Login to Comment!", "Login", "Authentication", routeValues: null, htmlAttributes: new { id = "loginLink" })</span>
                             Html.RenderAction("List", "Comment");
                         }
@@ -46,3 +57,4 @@
         </div>
     </div>
 </div>
+<script src="~/JavaScripts/EditPicture.js"></script>

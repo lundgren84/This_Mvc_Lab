@@ -11,9 +11,6 @@ Area
 
 
 <H1> Todo </H1>
-Added DateTImes....Fix in Program!
-
-JS validations	
-Edit Logged in person (Add email and more props)
-
----> Delete Comment // BUG!!  Creates a thread....creates 2 comments and delete BUGS!!!
+DateTime
+Public
+---> Delete/Create Comment // BUG!!  Creates a thread....creates 2 comments and delete BUGS!!!

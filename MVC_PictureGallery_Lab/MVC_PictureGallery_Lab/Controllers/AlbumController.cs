@@ -34,7 +34,6 @@ namespace MVC_PictureGallery_Lab.Controllers
             List<AlbumViewModel> Albums = Crud.AccGetAlbums(acc.Id).ToModelList();
             
             Albums.GetPictures();
-            Albums.OrderByDescending(x => x.Name);
             return PartialView("List", Albums);
         }
     
@@ -64,8 +63,8 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View(model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddPictures(bool Public,AlbumViewModel Model, HttpPostedFileBase file)
+        [ValidateAntiForgeryToken]      
+        public ActionResult AddPictures(AlbumViewModel Model, HttpPostedFileBase file)
         {
             if(file != null)
             {
@@ -73,7 +72,7 @@ namespace MVC_PictureGallery_Lab.Controllers
                 //Save file in Project
                 file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
                 //Fill Picture Model
-                PictureModel.Public = Public;
+                PictureModel.Public = false;
                 PictureModel.Name = file.FileName;
                 PictureModel.Url = $@"/Pictures/" + file.FileName;
                 PictureModel.Size = file.ContentLength;
@@ -81,9 +80,9 @@ namespace MVC_PictureGallery_Lab.Controllers
                 PictureModel.AlbumRefID = Model.Id;
                 Crud.CreatePicture(PictureModel.ToEntity());
                 //Spara ny bild med album ref id (skika till någon vettig plats!)
-                return RedirectToAction("Details", new { id = Model.Id });
+                return Content("Picture Added!");
             }
-            return View(Model);
+            return Content("ERROR!!!!");
        
         }   
         [HttpPost]

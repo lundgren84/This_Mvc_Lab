@@ -145,6 +145,7 @@
     <Content Include="JavaScripts\CreateAlbum.js" />
     <Content Include="JavaScripts\CreateComment.js" />
     <Content Include="JavaScripts\CreatePicture.js" />
+    <Content Include="JavaScripts\EditPicture.js" />
     <Content Include="JavaScripts\Examples\AlnumIndex.js" />
     <Content Include="JavaScripts\Examples\main.js" />
     <Content Include="JavaScripts\Growl\jquery.growl.css" />

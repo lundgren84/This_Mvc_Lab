@@ -19,6 +19,7 @@ namespace MVC_PictureGallery_Lab.Models
         public AlbumTopic Topic { get; set; }
         public AccountViewModel Account { get; set; }
         public List<PictureViewModel> Pictures { get; set; }
+        public DateTime DateCreated { get; set; }
     }
    
 }

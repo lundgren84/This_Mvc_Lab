@@ -24,6 +24,7 @@ namespace ConnectLayer
         public string Name { get; set; }
         public Nullable<ConnectLayer.AlbumTopic> Topic { get; set; }
         public Nullable<System.Guid> AccountRefID { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual Account Account { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

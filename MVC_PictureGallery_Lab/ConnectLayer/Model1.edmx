@@ -11,6 +11,9 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -20,6 +23,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Topic" Type="int" />
           <Property Name="AccountRefID" Type="uniqueidentifier" />
+          <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -29,6 +33,7 @@
           <Property Name="Text" Type="nvarchar" MaxLength="100" />
           <Property Name="AccountRefID" Type="uniqueidentifier" />
           <Property Name="PictureRefID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -134,6 +139,9 @@
           <NavigationProperty Name="Albums" Relationship="Self.FK_Album_Account" FromRole="Account" ToRole="Album" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Account" FromRole="Account" ToRole="Comment" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -145,6 +153,7 @@
           <Property Name="AccountRefID" Type="Guid" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Album_Account" FromRole="Album" ToRole="Account" />
           <NavigationProperty Name="Pictures" Relationship="Self.FK_Picture_Album" FromRole="Album" ToRole="Picture" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -156,6 +165,7 @@
           <Property Name="PictureRefID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Account" Relationship="Self.FK_Comment_Account" FromRole="Comment" ToRole="Account" />
           <NavigationProperty Name="Picture" Relationship="Self.FK_Comment_Picture" FromRole="Comment" ToRole="Picture" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
@@ -261,6 +271,9 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 </MappingFragment>
@@ -269,6 +282,7 @@
           <EntitySetMapping Name="Albums">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Album">
               <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
@@ -279,6 +293,7 @@
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="AccountRefID" ColumnName="AccountRefID" />

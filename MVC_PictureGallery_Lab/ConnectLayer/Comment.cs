@@ -18,6 +18,7 @@ namespace ConnectLayer
         public string Text { get; set; }
         public Nullable<System.Guid> AccountRefID { get; set; }
         public System.Guid PictureRefID { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Picture Picture { get; set; }

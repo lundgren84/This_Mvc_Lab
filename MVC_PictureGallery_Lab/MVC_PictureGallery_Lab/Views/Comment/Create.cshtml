@@ -9,7 +9,7 @@
 }
 
     @*@using (Ajax.BeginForm("Create", "Comment", FormMethod.Post, new { id = "ThisForm" }))*@
-    @using (Ajax.BeginForm("Create", "Comment", @Model.Picture, options, new { id = "ThisForm" }))
+    @using (Ajax.BeginForm("Create", "Comment", null, options, new { id = "ThisForm" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Picture)
@@ -23,7 +23,7 @@
                     @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-5">
-                    <input type="submit" value="Add" name="name" class="btn btn-default" />
+                    <input type="submit" value="Add" class="btn btn-default" />
                 </div>
                
             </div>         
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-
+        <div id="JSTEST"></div>
     }
 <div id="commentResult">
     @{ 

@@ -32,7 +32,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         public ActionResult Create(CommentViewModel CommentModel,PictureViewModel Model)
         {
             
-            if (CommentModel.Text.Length != 0)
+            if (CommentModel.Text != null)
             {
                 var AccUserName = User.Identity.Name;
                 AccountViewModel acc = (Crud.GetAccount(AccUserName)).ToModel();

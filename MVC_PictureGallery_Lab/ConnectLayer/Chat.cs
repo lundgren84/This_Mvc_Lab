@@ -17,6 +17,7 @@ namespace ConnectLayer
         public System.Guid Id { get; set; }
         public string Text { get; set; }
         public Nullable<System.Guid> AccountRefID { get; set; }
+        public Nullable<System.DateTime> PostDate { get; set; }
     
         public virtual Account Account { get; set; }
     }

@@ -32,6 +32,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Text" Type="nvarchar" MaxLength="100" />
           <Property Name="AccountRefID" Type="uniqueidentifier" />
+          <Property Name="PostDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -301,6 +302,7 @@
           <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AccountRefID" Type="Guid" />
           <NavigationProperty Name="Account" Relationship="MVC_GalleryDbModel.FK_Chat_Account" FromRole="Chat" ToRole="Account" />
+          <Property Name="PostDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Chat_Account">
           <End Type="MVC_GalleryDbModel.Account" Role="Account" Multiplicity="0..1" />
@@ -379,6 +381,7 @@
           <EntitySetMapping Name="Chats">
             <EntityTypeMapping TypeName="MVC_GalleryDbModel.Chat">
               <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
                 <ScalarProperty Name="AccountRefID" ColumnName="AccountRefID" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

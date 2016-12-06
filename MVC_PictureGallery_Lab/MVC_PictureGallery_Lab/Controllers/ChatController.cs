@@ -17,7 +17,6 @@ namespace MVC_PictureGallery_Lab.Controllers
         [HttpPost]
         public ActionResult Create(ChatViewModel Model)
         {
-
             return View();
         }
     }

@@ -1,4 +1,5 @@
-﻿using MVC_PictureGallery_Lab.Models;
+﻿using ConnectLayer;
+using MVC_PictureGallery_Lab.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace MVC_PictureGallery_Lab.Controllers
         [HttpPost]
         public ActionResult Create(ChatViewModel Model)
         {
+            Model.PostTime = DateTime.UtcNow;
+            Crud.CreateChatPost(Model);
             return View();
         }
     }

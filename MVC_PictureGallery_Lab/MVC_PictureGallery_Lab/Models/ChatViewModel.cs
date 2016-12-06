@@ -9,6 +9,7 @@ namespace MVC_PictureGallery_Lab.Models
     {
         public Guid Id { get; set; }
         public string Text { get; set; }
+        public DateTime PostTime { get; set; }
         public Guid AccountRefID { get; set; }
     }
 }

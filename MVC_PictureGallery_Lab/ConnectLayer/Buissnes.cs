@@ -53,17 +53,25 @@ namespace ConnectLayer
             }
         }
 
+        public static string GetAccountName(Guid accountRefID)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                return ctx.Accounts.SingleOrDefault(x => x.Id == accountRefID).UserName;
+            }
+        }
+
         public static List<Chat> GetChat()
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
                 var sortedChat = ctx.Chats.OrderBy(x => x.PostDate).ToList();
                 var result = new List<Chat>();
-                for (int i = 0; i < 10; i++)
+                for (int i = sortedChat.Count-10; i < sortedChat.Count; i++)
                 {
                     result.Add(sortedChat[i]);
                 }
-                return ctx.Chats.ToList();
+                return result;
             }
         }
 

@@ -1,5 +1,4 @@
-﻿@model MVC_PictureGallery_Lab.Models.ChatViewModel
-
+﻿
 
 @{
     var options = new AjaxOptions()
@@ -7,25 +6,25 @@
         HttpMethod = "POST",
     };
 }
-<div id="ChatArea">
-    <small id="msg0">-</small>
-    <small id="msg1">-</small>
-    <small id="msg2">-</small>
-    <small id="msg3">-</small>
-    <small id="msg4">-</small>
-    <small id="msg5">-</small>
-    <small id="msg6">-</small>
-    <small id="msg7">-</small>
-    <small id="msg8">-</small>
-    <small id="msg9">-</small>
-</div>
-@using (Ajax.BeginForm("Create", "Chat", options))
-{
-    @Html.EditorFor(model => model.Text, new { id = "txtBox" })
-    <input type="submit" value="Send"  id=""/>
-}
+<div id="FullChat">
+    <div id="ChatArea">
 
+    </div>
+    @using (Ajax.BeginForm("Create", "Chat", options))
+    {
+        @*@Html.EditorFor(model => model.Text, new { id = "txtBox" })*@
+        <input type="text" name="txt"/>   
+        <input type="submit" value="Send" id="chatSubmit" />
+    }
+</div>
 <style>
+    #FullChat{
+        position:absolute;
+        right:0;
+        top:10%;
+        z-index:100;
+
+    }
     #ChatArea {
         font-family:Consolas;
         font-size:small;

@@ -12,4 +12,9 @@ namespace MVC_PictureGallery_Lab.Models
         public DateTime PostTime { get; set; }
         public Guid AccountRefID { get; set; }
     }
+    public class ChatContentViewModel
+    {
+        public string Text { get; set; }
+        public string AccountName { get; set; }
+    }
 }

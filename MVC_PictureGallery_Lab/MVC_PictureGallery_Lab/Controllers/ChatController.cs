@@ -17,8 +17,10 @@ namespace MVC_PictureGallery_Lab.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ChatViewModel Model)
+        public ActionResult Create(string txt)
         {
+            var Model = new ChatViewModel();
+            Model.Text = txt;
             Model.PostTime = DateTime.UtcNow;
             Model.AccountRefID = new Guid();
             if (User.Identity.IsAuthenticated)
@@ -33,7 +35,15 @@ namespace MVC_PictureGallery_Lab.Controllers
         public ActionResult List()
         {
             var chatContent = Crud.GetChat().ToModelList();
-            return Json(chatContent,JsonRequestBehavior.AllowGet);
+
+            List<ChatContentViewModel> ChatObjects = new List<ChatContentViewModel>();
+            chatContent.ForEach(m => ChatObjects.Add(new ChatContentViewModel()
+            {
+                Text = m.Text,
+                AccountName = Crud.GetAccountName(m.AccountRefID)
+            }));
+
+            return Json(ChatObjects, JsonRequestBehavior.AllowGet);
         }
     }
 }

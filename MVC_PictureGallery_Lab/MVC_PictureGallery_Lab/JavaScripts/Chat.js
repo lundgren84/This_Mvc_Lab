@@ -5,22 +5,19 @@ function reloadChat2() {
     $.ajax({
         dataType: "JSON",
         type: "GET",
-        url: "../Chat/List",
+        url: "/Chat/List",
         success: function (data) {
          
             var chat = "";
-            for (var i = 0; i < data.length; i++) {
-               
-                chat +='<p>'+ data[i].Text + ' - ' +'<small>'+ data[i].PostTime+'</small>'+'</p>';
-                          
+            for (var i = 0; i < data.length; i++) {          
+                    chat += '<p>' + data[i].Text + ' - ' + '<small>(' + data[i].AccountName + ')</small>' + '</p>';                          
             }
-
-
-
             $('#ChatArea').html(chat);
         }
     });
 }
-
+$('#chatSubmit').click(function () {
+    $('#txtBox').val("");
+});
 
 

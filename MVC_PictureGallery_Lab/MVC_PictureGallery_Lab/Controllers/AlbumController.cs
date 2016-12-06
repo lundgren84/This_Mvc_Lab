@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -68,6 +69,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         {
             if(file != null)
             {
+                Thread.Sleep(1000);
                 PictureViewModel PictureModel = new PictureViewModel();
                 //Save file in Project
                 file.SaveAs(Path.Combine(Server.MapPath("~/Pictures"), file.FileName));
@@ -82,7 +84,7 @@ namespace MVC_PictureGallery_Lab.Controllers
                 //Spara ny bild med album ref id (skika till någon vettig plats!)
                 return Content("Picture Added!");
             }
-            return Content("ERROR!!!!");
+            return Content("Need a(.jpg, .jpeg, .bmp, .gif, .png) file!");
        
         }   
         [HttpPost]

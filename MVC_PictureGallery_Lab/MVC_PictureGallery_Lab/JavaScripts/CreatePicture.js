@@ -50,13 +50,6 @@ var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"];
 //});
 $(document).ready(function () {
     var form = $("#PictureForm");
-
-
-
-
-
-
-
     form.submit(function (e) {
 
 
@@ -66,10 +59,13 @@ $(document).ready(function () {
             method: "POST",
             url: "/Album/AddPictures",
             data: new FormData(form[0]),
+            beforeSend: function () { $('#Spinner').fadeIn("slow") },
             success: function (data) {
                 $.growl.notice({ message: "Picture Uploaded!" });
                 $("#result").html(data);
                 form[0].reset();
+                $('#Spinner').fadeOut("slow")
+               
             },
             error: function () {
                 $.growl.error({ message: "Need a (.jpg, .jpeg, .bmp, .gif, .png) file!" });
@@ -80,3 +76,8 @@ $(document).ready(function () {
     });
 })
 
+$('#file').click(function () {
+    //$('#Spinner').fadeIn("slow")
+    //$('#file').attr('disabled','disabled');
+
+});

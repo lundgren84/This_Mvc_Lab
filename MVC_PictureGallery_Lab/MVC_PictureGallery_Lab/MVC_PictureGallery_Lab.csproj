@@ -178,6 +178,7 @@
     <Content Include="Style\jquery.growl.css" />
     <Content Include="Style\Main.css" />
     <Content Include="Style\PictureUpload.css" />
+    <Content Include="Style\Spinner.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

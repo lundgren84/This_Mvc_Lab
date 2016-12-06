@@ -7,24 +7,34 @@
         HttpMethod = "POST",
     };
 }
-
+<div id="ChatArea">
+    <small id="msg0">-</small>
+    <small id="msg1">-</small>
+    <small id="msg2">-</small>
+    <small id="msg3">-</small>
+    <small id="msg4">-</small>
+    <small id="msg5">-</small>
+    <small id="msg6">-</small>
+    <small id="msg7">-</small>
+    <small id="msg8">-</small>
+    <small id="msg9">-</small>
+</div>
 @using (Ajax.BeginForm("Create", "Chat", options))
 {
-    @*if (User.Identity != null)
-    {
-        @Model.AccountRefID = User.Identity.Name;
-    }*@
+    @Html.EditorFor(model => model.Text, new { id = "txtBox" })
+    <input type="submit" value="Send"  id=""/>
+}
 
-    @Html.EditorFor(model => model.Text)
-    <input type="submit" />
-}
-<div id="ChatArea"></div>
 <style>
-#ChatArea{
-    border: solid red 2px;
-    height : 10%;
-    width : 20%;
-}
+    #ChatArea {
+        font-family:Consolas;
+        font-size:small;
+        margin-top:5%;
+        border: solid red 2px;
+        height: 10%;
+        width: 80%;
+        background-color:#220c0c;
+    }
 </style>
 
 

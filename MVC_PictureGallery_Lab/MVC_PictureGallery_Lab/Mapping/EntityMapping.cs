@@ -1,4 +1,5 @@
 ﻿using ConnectLayer;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MVC_PictureGallery_Lab.Mapping;
 using MVC_PictureGallery_Lab.Models;
@@ -143,6 +144,43 @@ namespace MVC_PictureGallery_Lab.Mapping
             var ModelPictures = new List<PictureViewModel>();
             Pictures.ForEach(x => ModelPictures.Add(x.ToModel()));
             return ModelPictures;
+        }
+        
+        //Chat
+        public static ChatViewModel ToModel(this Chat Entity)
+        {
+            var Model = new ChatViewModel()
+            {
+                Id = Entity.Id,
+                PostTime = (DateTime)Entity.PostDate,
+                Text = Entity.Text,           
+            };
+            if(Entity.AccountRefID != null)
+            {
+                Model.AccountRefID = (Guid)Entity.AccountRefID;
+            }
+
+            return Model;
+        }
+        public static List<ChatViewModel> ToModelList(this List<Chat> Chats)
+        {
+            var Result = new List<ChatViewModel>();
+            Chats.ForEach(entity => Result.Add(entity.ToModel()));
+            return Result;
+        }
+        public static Chat ToEntity(this ChatViewModel Model)
+        {
+            
+            var Entity = new Chat()
+            {
+                Id=Model.Id,
+                PostDate = Model.PostTime,
+                Text = Model.Text,
+                AccountRefID = Model.AccountRefID
+            };
+          
+
+            return Entity;
         }
    
     }

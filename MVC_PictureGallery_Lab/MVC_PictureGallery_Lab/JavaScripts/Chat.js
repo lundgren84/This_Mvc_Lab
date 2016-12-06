@@ -1,15 +1,26 @@
 ﻿$('document').ready(function (e) {
-    setInterval(reloadComments, 5000);
+    setInterval(reloadChat2, 1000);
 });
-
-var commentsContainer = $('#commentcontainer');
-var reloadComments = function (e) {
-
+function reloadChat2() {
     $.ajax({
+        dataType: "JSON",
         type: "GET",
-        url: "../../Comment/List?pictureID=" + $('#pictureID').val(),
+        url: "../Chat/List",
         success: function (data) {
-            $('#CommentsTest').html(data);
+         
+            var chat = "";
+            for (var i = 0; i < data.length; i++) {
+               
+                chat +='<p>'+ data[i].Text + ' - ' +'<small>'+ data[i].PostTime+'</small>'+'</p>';
+                          
+            }
+
+
+
+            $('#ChatArea').html(chat);
         }
     });
-};
+}
+
+
+

@@ -31,11 +31,39 @@ namespace ConnectLayer
             }
         }
 
+        public static void CreateChatPost(Chat chat)
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                if(chat.AccountRefID == new Guid())
+                {
+                    chat.AccountRefID = null;
+                }
+                chat.Id = Guid.NewGuid();
+                ctx.Chats.Add(chat);
+                ctx.SaveChanges();
+            }
+        }
+
         public static List<Album> AccGetAlbums(Guid id)
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
                 return ctx.Albums.Where(x => x.AccountRefID == id).ToList();
+            }
+        }
+
+        public static List<Chat> GetChat()
+        {
+            using (var ctx = new MVC_GalleryDbEntities1())
+            {
+                var sortedChat = ctx.Chats.OrderBy(x => x.PostDate).ToList();
+                var result = new List<Chat>();
+                for (int i = 0; i < 10; i++)
+                {
+                    result.Add(sortedChat[i]);
+                }
+                return ctx.Chats.ToList();
             }
         }
 

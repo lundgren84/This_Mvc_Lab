@@ -1,0 +1,10 @@
+﻿@using System.Security.Claims
+@{
+    ViewBag.Title = "Claims";
+}
+
+<h2>Claims</h2>
+
+@{ 
+    var identity = User.Identity as ClaimsIdentity;
+}

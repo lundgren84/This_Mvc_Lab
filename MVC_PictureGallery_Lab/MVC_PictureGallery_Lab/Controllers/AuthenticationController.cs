@@ -49,8 +49,8 @@ namespace MVC_PictureGallery_Lab.Controllers
                 //Create a identity
                 var identity = await userManager.CreateIdentityAsync(user, 
                     DefaultAuthenticationTypes.ApplicationCookie);
-                //Create new claim
-                identity.AddClaim(new Claim("AccUserName", username));
+                //Create new claim            
+                identity.AddClaim(new Claim("Email", user.Email));
 
                 var authorisationManager = 
                     HttpContext.GetOwinContext().Authentication;

@@ -20,8 +20,12 @@ namespace MVC_PictureGallery_Lab.Controllers
         // GET: Album
         public ActionResult Index()
         {
+            return View();
+        }
+        public ActionResult Claims()
+        {
             //var identity = User.Identity as ClaimsIdentity;
-            //var email = identity.FindFirst("name").Value;
+            //var email = identity.FindFirst("Email").Value;
 
             return View();
         }

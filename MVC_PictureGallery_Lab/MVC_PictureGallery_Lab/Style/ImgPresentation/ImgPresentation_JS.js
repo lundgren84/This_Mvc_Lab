@@ -95,7 +95,6 @@ http://codepen.io/pierre-bonnin-pro/
     }
 })(jQuery);
 
-
 $(document).ready(function () {
     $('.img--back').jalisImgBack();
 });

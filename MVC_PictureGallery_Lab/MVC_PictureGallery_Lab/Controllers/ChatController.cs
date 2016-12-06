@@ -19,7 +19,7 @@ namespace MVC_PictureGallery_Lab.Controllers
         public ActionResult Create(ChatViewModel Model)
         {
             Model.PostTime = DateTime.UtcNow;
-            Crud.CreateChatPost(Model);
+            //Crud.CreateChatPost(Model);
             return View();
         }
     }

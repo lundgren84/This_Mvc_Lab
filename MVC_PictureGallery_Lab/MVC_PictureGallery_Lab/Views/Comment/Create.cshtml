@@ -34,11 +34,14 @@
             </div>
         </div>
         <div id="JSTEST"></div>
-    }
-<div id="commentResult">
-    @{ 
-        Html.RenderAction("List",new { Id = @Model.Picture.Id });
-    }
-</div>
+
+
+        <div id="commentResult">
+            @{
+                Html.RenderAction("List", new { Id = @Model.Picture.Id });
+            }
+        </div>
+                }       
+
 
 <script src="~/JavaScripts/CreateComment.js"></script>

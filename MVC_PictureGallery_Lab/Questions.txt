@@ -11,6 +11,7 @@ Area
 
 
 <H1> Todo </H1>
-DateTime
-Public
+Admin delete Acc
+Chat / Call for Comments
+
 ---> Delete/Create Comment // BUG!!  Creates a thread....creates 2 comments and delete BUGS!!!

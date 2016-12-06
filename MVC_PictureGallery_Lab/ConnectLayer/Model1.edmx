@@ -25,6 +25,14 @@
           <Property Name="AccountRefID" Type="uniqueidentifier" />
           <Property Name="DateCreated" Type="datetime" />
         </EntityType>
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountRefID" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
@@ -68,6 +76,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Chat_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Chat" Type="Self.Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="AccountRefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -107,12 +127,17 @@
         <EntityContainer Name="MVC_GalleryDbModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chat" EntityType="Self.Chat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Album_Account" Association="Self.FK_Album_Account">
             <End Role="Account" EntitySet="Account" />
             <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chat_Account" Association="Self.FK_Chat_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Chat" EntitySet="Chat" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Account" Association="Self.FK_Comment_Account">
             <End Role="Account" EntitySet="Account" />
@@ -142,6 +167,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chats" Relationship="MVC_GalleryDbModel.FK_Chat_Account" FromRole="Account" ToRole="Chat" />
         </EntityType>
         <EntityType Name="Album">
           <Key>
@@ -260,8 +286,34 @@
             <End Role="Picture" EntitySet="Pictures" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
+          <EntitySet Name="Chats" EntityType="MVC_GalleryDbModel.Chat" />
+          <AssociationSet Name="FK_Chat_Account" Association="MVC_GalleryDbModel.FK_Chat_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Chat" EntitySet="Chats" />
+          </AssociationSet>
         </EntityContainer>
         <EnumType Name="AlbumTopic" a:ExternalTypeName="ConnectLayer.AlbumTopic" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="Chat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountRefID" Type="Guid" />
+          <NavigationProperty Name="Account" Relationship="MVC_GalleryDbModel.FK_Chat_Account" FromRole="Chat" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Chat_Account">
+          <End Type="MVC_GalleryDbModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="MVC_GalleryDbModel.Chat" Role="Chat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chat">
+              <PropertyRef Name="AccountRefID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -321,6 +373,15 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="MVC_GalleryDbModel.Chat">
+              <MappingFragment StoreEntitySet="Chat">
+                <ScalarProperty Name="AccountRefID" ColumnName="AccountRefID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

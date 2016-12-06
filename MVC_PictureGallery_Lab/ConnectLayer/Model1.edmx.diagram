@@ -14,6 +14,8 @@
         <AssociationConnector Association="MVC_GalleryDbModel.FK_Comment_Account" ManuallyRouted="false" />
         <AssociationConnector Association="MVC_GalleryDbModel.FK_Picture_Album" ManuallyRouted="false" />
         <AssociationConnector Association="MVC_GalleryDbModel.FK_Comment_Picture" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MVC_GalleryDbModel.Chat" Width="1.5" PointX="4.25" PointY="4.625" />
+        <AssociationConnector Association="MVC_GalleryDbModel.FK_Chat_Account" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

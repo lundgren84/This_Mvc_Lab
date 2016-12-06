@@ -19,6 +19,7 @@ namespace ConnectLayer
         {
             this.Albums = new HashSet<Album>();
             this.Comments = new HashSet<Comment>();
+            this.Chats = new HashSet<Chat>();
         }
     
         public System.Guid Id { get; set; }
@@ -31,5 +32,7 @@ namespace ConnectLayer
         public virtual ICollection<Album> Albums { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chat> Chats { get; set; }
     }
 }

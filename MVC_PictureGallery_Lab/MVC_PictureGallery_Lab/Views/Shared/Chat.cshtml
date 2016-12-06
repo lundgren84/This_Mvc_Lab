@@ -1,0 +1,30 @@
+﻿@model MVC_PictureGallery_Lab.Models.ChatViewModel
+
+
+@{
+    var options = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+    };
+}
+
+@using (Ajax.BeginForm("", "", options))
+{
+    @*if (User.Identity != null)
+    {
+        @Model.AccountRefID = User.Identity.Name;
+    }*@
+
+    @Html.EditorFor(model => model.Text)
+}
+<div id="ChatArea"></div>
+<style>
+#ChatArea{
+    border: solid red 2px;
+    height : 10%;
+    width : 20%;
+}
+</style>
+
+
+<script src="~/JavaScripts/Chat.js"></script>

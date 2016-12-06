@@ -8,3 +8,10 @@
 @{ 
     var identity = User.Identity as ClaimsIdentity;
 }
+@foreach (var item in identity.Claims)
+{
+    <hr />
+    <p>@item.Type</p>
+    <p>@item.Value</p>
+}
+

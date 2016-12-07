@@ -1,5 +1,5 @@
 ﻿$('document').ready(function (e) {
-    setInterval(reloadChat2, 1000);
+    setInterval(reloadChat2, 500);
 });
 function reloadChat2() {
     $.ajax({
@@ -9,8 +9,11 @@ function reloadChat2() {
         success: function (data) {
          
             var chat = "";
-            for (var i = 0; i < data.length; i++) {          
-                    chat += '<p>' + data[i].Text + ' - ' + '<small>(' + data[i].AccountName + ')</small>' + '</p>';                          
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].AccountName.length < 1) 
+                    chat += '<p>' + data[i].Text + ' - <small>' + 'Anonym' + '</small>' + '</p>';
+                else
+                    chat += '<p>' + data[i].Text  + ' - <small>' + data[i].AccountName + '</small>' + '</p>';                          
             }
             $('#ChatArea').html(chat);
         }

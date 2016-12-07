@@ -40,7 +40,7 @@ namespace MVC_PictureGallery_Lab.Controllers
             chatContent.ForEach(m => ChatObjects.Add(new ChatContentViewModel()
             {
                 Text = m.Text,
-                AccountName = "("+ (Crud.GetAccountName(m.AccountRefID)) +")"
+                AccountName = Crud.GetAccountName(m.AccountRefID)
                 ?? ""
             }));
 

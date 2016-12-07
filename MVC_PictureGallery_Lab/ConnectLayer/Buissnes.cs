@@ -57,7 +57,9 @@ namespace ConnectLayer
         {
             using (var ctx = new MVC_GalleryDbEntities1())
             {
-                return ctx.Accounts.SingleOrDefault(x => x.Id == accountRefID).UserName;
+                if (accountRefID != new Guid())
+                    return ctx.Accounts.SingleOrDefault(x => x.Id == accountRefID).UserName;
+                else return null;
             }
         }
 
